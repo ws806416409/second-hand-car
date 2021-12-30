@@ -1,0 +1,18 @@
+server:
+  port: 8088
+spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.27.211.78:3310/secondHandCar?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: lemon
+  jdbc:
+    template:
+      query-timeout: 3
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
