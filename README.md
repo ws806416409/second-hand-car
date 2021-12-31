@@ -15,6 +15,11 @@
 3. 留言模块
    - 留言
    - 查看留言
+4. 购物车模块
+   - 加入购物车
+   - 购物车列表
+5. 订单模块
+   - 订单详情
 
 ----
 
@@ -27,3 +32,7 @@ seller(sid, email, password)
 carInfo(cid, sid, cname, price, time, milage, img)
 
 comment(cid, bid, msg)
+
+cart(bid, cid)
+
+order_details(oid, bid, sid, cname, money, time)
