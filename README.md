@@ -25,11 +25,9 @@
 
 ## 数据库设计
 
-buyer(bid, email, password)
+User(bid, email, password)
 
-seller(sid, email, password)
-
-carInfo(cid, sid, cname, price, time, milage, img)
+car(cid, sid, cname, price, time, milage, img, detail, ctype)
 
 comment(cid, bid, msg)
 
