@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-12-31
  */
 @RestController
-@RequestMapping("/lemon/cart")
+@RequestMapping("/cart")
 public class CartController {
 
 }
