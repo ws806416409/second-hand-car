@@ -1,6 +1,7 @@
 package com.lemon.controller;
 
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author qaq
  * @since 2021-12-31
  */
-@RestController
+@Controller
 @RequestMapping("/cart")
 public class CartController {
+
+
 
 }

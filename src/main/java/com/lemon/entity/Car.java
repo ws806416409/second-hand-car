@@ -37,7 +37,8 @@ public class Car implements Serializable {
 
     private String img;
 
-    private String describe;
+    private String detail;
 
+    private String ctype;
 
 }

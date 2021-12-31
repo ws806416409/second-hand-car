@@ -93,16 +93,19 @@
             id="car-map-body"
             style="text-align: center; font-size: 16px; font-weight: bolder; border: 2px"
           >
-            <div class="col-md-3" onclick="gotoCarInfo(this)" th:title="">
+
+            <div th:each="car : ${cars}" class="col-md-3" onclick="gotoCarInfo(this)"}>
               <img
-                src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png"
-                alt="这是一个汽车图片"
-                class="img-rounded"
-                width="320"
-                height="320"
-                style="object-fit: cover"
+                      src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png"
+                      th:src="${car.getImg()}"
+                      alt="这是一个汽车图片"
+                      class="img-rounded"
+                      width="320"
+                      height="320"
+                      style="object-fit: cover"
               />
-              <p>这是汽车名称</p>
+
+              <a th:text="${car.getCname()}" href = "www.lemonws.top" th:href="@{/car/info/{id}(id=${car.getCid()})}"></a>
             </div>
             <!-- ... 这里就用一个循环， 把所有的汽车图片和相关信息表示在一个div中就可以了
             已经设置过， 一行有4个项目
@@ -114,11 +117,5 @@
       <div class="col-md-2"></div>
     </div>
 
-    <script>
-      // 页面javascript
-      function gotoCarInfo(that) {
-        window.location.href = that.attributes.title.nodeValue;
-      }
-    </script>
   </body>
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- @pageDoc: 该文件为商品详情页面，主要实现查看商品详情功能，和将商品添加至购物车的功能
+  页面逻辑：
+    显示商品的详细信息： 汽车图片、汽车名称、汽车里程数、汽车价格、汽车描述
+  -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Title</title>
+  <!-- 链接引入 bootstrap 的 css 样式 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" />
+  <!-- 链接引入 bootstrap 的 javascript 代码 -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+    crossorigin="anonymous"></script>
+  <!-- 链接引入 jquery 的 javascript 代码 -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+  <style>
+    /* 页面css */
+    #head {
+      background-color: rgb(255, 249, 240);
+    }
+
+    #head * {
+      background-color: rgb(255, 249, 240);
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bolder;
+    }
+
+    body {
+      background-color: rgb(255, 249, 240);
+    }
+
+    .description {
+      font-size: 16px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 页面内容 -->
+  <div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8">
+      <!-- 页头 -->
+      <div id="head" class="row">
+        <div class="row">
+          <div class="col-md-6">
+            <ol class="breadcrumb">
+              <!-- 这里是页面导航栏， 注意各个页面之间的跳转 -->
+              <li><a href="#">皮卡丘二手车市场</a></li>
+              <li><a href="#">主页</a></li>
+              <li class="active">当前汽车名称</li>
+            </ol>
+          </div>
+          <div class="col-md-6">
+            <!-- 已登录显示邮箱，未登录则显示跳转到登录页面或注册页面链接 -->
+            <h4 style="text-align: right"><a href="#">这里是用户邮箱</a></h4>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div id="main">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- 图片 -->
+            <img src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png" alt="这里是汽车图片"
+              class="img-rounded" height="650" width=" 650" style="object-fit: cover" />
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            <!-- 商品信息 -->
+            <div class="row">
+              <div class="page-header" style="text-align: left">
+                <h1 th:text="${info.getCname()}">汽车名称 <small th:text="${info.getMilage()}">里程数: 汽车里程数</small></h1>
+              </div>
+            </div>
+            <div class="row description">
+              <p th:text="${info.getDetail()}">
+                这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。这里是汽车描述。
+              </p>
+            </div>
+            <div class="row" style="text-align: left; height: 200px">
+              <h4>到手价：</h4>
+              <h2 style="color: crimson" th:text="${info.getPrice()}">这里是汽车价格</h2>
+            </div>
+            <div class="row" style="text-align: left">
+              <button type="button" class="btn btn-success" style="width: 60%; height: 50px" onclick="addToCart">
+                添加到购物车
+              </button>
+              <p style="font-size: 15px">添加到购物车以购买二手车</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="foot"></div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <script>
+      // 页面javascript
+  </script>
+</body>
+
+</html>

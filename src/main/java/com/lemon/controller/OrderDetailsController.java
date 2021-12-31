@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lemon.entity.OrderDetails;
 import com.lemon.service.IOrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author qaq
  * @since 2021-12-31
  */
-@RestController
+@Controller
 @RequestMapping("/order")
 public class OrderDetailsController {
 
@@ -33,7 +34,6 @@ public class OrderDetailsController {
         OrderDetails orderDetail = iOrderDetailsService.getOne(qu);
         model.addAttribute("order", orderDetail);
         return "carInfo";
-
     }
 
 
