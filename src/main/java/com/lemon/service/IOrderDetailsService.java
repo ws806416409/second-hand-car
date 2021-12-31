@@ -1,7 +1,7 @@
 package com.lemon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.entity.Comment;
+import com.lemon.entity.OrderDetails;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.lemon.entity.Comment;
  * @author qaq
  * @since 2021-12-31
  */
-public interface ICommentService extends IService<Comment> {
+public interface IOrderDetailsService extends IService<OrderDetails> {
 
 }

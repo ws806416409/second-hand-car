@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author qaq
- * @since 2021-12-30
+ * @since 2021-12-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -21,7 +21,7 @@ public class Comment implements Serializable {
 
     private Integer cid;
 
-    private Integer bid;
+    private Integer uid;
 
     private String msg;
 

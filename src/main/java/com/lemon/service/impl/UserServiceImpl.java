@@ -1,9 +1,9 @@
 package com.lemon.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.lemon.entity.Comment;
-import com.lemon.mapper.CommentMapper;
-import com.lemon.service.ICommentService;
+import com.lemon.entity.User;
+import com.lemon.mapper.UserMapper;
+import com.lemon.service.IUserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-31
  */
 @Service
-public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements ICommentService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
 }

@@ -1,9 +1,8 @@
 package com.lemon.controller;
 
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * </p>
  *
  * @author qaq
- * @since 2021-12-30
+ * @since 2021-12-31
  */
-@Controller
-@RequestMapping("/lemon/carinfo")
-public class CarinfoController {
+@RestController
+@RequestMapping("/lemon/car")
+public class CarController {
 
 }

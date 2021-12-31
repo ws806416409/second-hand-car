@@ -1,6 +1,7 @@
 package com.lemon.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,18 +14,18 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author qaq
- * @since 2021-12-30
+ * @since 2021-12-31
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("carInfo")
-public class Carinfo implements Serializable {
+public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "cid", type = IdType.AUTO)
     private Integer cid;
 
-    private Integer sid;
+    private Integer uid;
 
     private String cname;
 
@@ -35,6 +36,8 @@ public class Carinfo implements Serializable {
     private Double milage;
 
     private String img;
+
+    private String describe;
 
 
 }

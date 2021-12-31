@@ -1,7 +1,7 @@
 package com.lemon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.entity.Seller;
+import com.lemon.entity.Cart;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.lemon.entity.Seller;
  * </p>
  *
  * @author qaq
- * @since 2021-12-30
+ * @since 2021-12-31
  */
-public interface ISellerService extends IService<Seller> {
+public interface ICartService extends IService<Cart> {
 
 }

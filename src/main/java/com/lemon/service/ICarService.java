@@ -1,7 +1,7 @@
 package com.lemon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.entity.Carinfo;
+import com.lemon.entity.Car;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.lemon.entity.Carinfo;
  * </p>
  *
  * @author qaq
- * @since 2021-12-30
+ * @since 2021-12-31
  */
-public interface ICarinfoService extends IService<Carinfo> {
+public interface ICarService extends IService<Car> {
 
 }

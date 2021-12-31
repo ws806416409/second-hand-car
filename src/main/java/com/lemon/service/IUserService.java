@@ -1,7 +1,7 @@
 package com.lemon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.lemon.entity.Buyer;
+import com.lemon.entity.User;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.lemon.entity.Buyer;
  * </p>
  *
  * @author qaq
- * @since 2021-12-30
+ * @since 2021-12-31
  */
-public interface IBuyerService extends IService<Buyer> {
+public interface IUserService extends IService<User> {
 
 }
