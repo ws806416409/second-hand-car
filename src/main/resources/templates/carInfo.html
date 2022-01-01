@@ -10,16 +10,23 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Title</title>
-  <!-- 链接引入 bootstrap 的 css 样式 -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" />
-  <!-- 链接引入 bootstrap 的 javascript 代码 -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-    crossorigin="anonymous"></script>
+  <title>二手车详情</title>
   <!-- 链接引入 jquery 的 javascript 代码 -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- 链接引入 bootstrap 的 css 样式 -->
+  <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+          crossorigin="anonymous"
+  />
+  <!-- 链接引入 bootstrap 的 javascript 代码 -->
+  <script
+          src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+          integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+          crossorigin="anonymous"
+  ></script>
+
   <style>
     /* 页面css */
     #head {
@@ -38,7 +45,102 @@
 
     .description {
       font-size: 16px;
-      height: 200px;
+      height: 150px;
+    }
+
+    .basic-grey {
+      margin-left: auto;
+      margin-right: auto;
+      background: #f7f7f7;
+      padding: 25px 15px 25px 10px;
+      font: 14px Georgia, 'Times New Roman', Times, serif;
+      color: #888;
+      text-shadow: 1px 1px 1px #fff;
+      border: 1px solid #e4e4e4;
+    }
+
+    .basic-grey h1 {
+      font-size: 25px;
+      padding: 0px 0px 10px 40px;
+      display: block;
+      border-bottom: 1px solid #e4e4e4;
+      margin: -10px -15px 30px -10px;
+      color: #888;
+    }
+
+    .basic-grey h1 > span {
+      display: block;
+      font-size: 16px;
+    }
+
+    .basic-grey label {
+      display: block;
+      margin: 0px;
+    }
+
+    .basic-grey label > span {
+      float: left;
+      width: 20%;
+      text-align: right;
+      padding-right: 10px;
+      margin-top: 10px;
+      color: #888;
+    }
+
+    .basic-grey input[type='text'],
+    .basic-grey input[type='email'],
+    .basic-grey textarea,
+    .basic-grey select {
+      border: 1px solid #dadada;
+      color: #888;
+      height: 30px;
+      margin-bottom: 16px;
+      margin-right: 6px;
+      margin-top: 2px;
+      outline: 0 none;
+      padding: 3px 3px 3px 5px;
+      width: 70%;
+      font-size: 12px;
+      line-height: 15px;
+      box-shadow: inset 0px 1px 4px #ececec;
+      -moz-box-shadow: inset 0px 1px 4px #ececec;
+      -webkit-box-shadow: inset 0px 1px 4px #ececec;
+    }
+
+    .basic-grey textarea {
+      padding: 5px 3px 3px 5px;
+    }
+
+    .basic-grey select {
+      background: #fff url('down-arrow.png') no-repeat right;
+      background: #fff url('down-arrow.png') no-repeat right;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-indent: 0.01px;
+      text-overflow: '';
+      width: 100%;
+      height: 35px;
+      line-height: 25px;
+    }
+
+    .basic-grey textarea {
+      height: 100px;
+    }
+
+    .basic-grey .button {
+      background: #e27575;
+      border: none;
+      padding: 10px 25px 10px 25px;
+      color: #fff;
+      box-shadow: 1px 1px 5px #b6b6b6;
+      border-radius: 3px;
+      text-shadow: 1px 1px 1px #9e3f3f;
+      cursor: pointer;
+    }
+
+    .basic-grey .button:hover {
+      background: #cf7a7a;
     }
   </style>
 </head>
@@ -71,7 +173,7 @@
         <div class="row">
           <div class="col-md-6">
             <!-- 图片 -->
-            <img src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png" alt="这里是汽车图片"
+            <img src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png" th:src="${info.getImg()}" alt="这里是汽车图片"
               class="img-rounded" height="650" width=" 650" style="object-fit: cover" />
           </div>
           <div class="col-md-1"></div>
@@ -92,11 +194,70 @@
               <h2 style="color: crimson" th:text="${info.getPrice()}">这里是汽车价格</h2>
             </div>
             <div class="row" style="text-align: left">
-              <button type="button" class="btn btn-success" style="width: 60%; height: 50px" onclick="addToCart">
+              <button
+                      type="button"
+                      class="btn btn-success"
+                      style="width: 60%; height: 50px"
+                      onclick="addToCart"
+              >
                 添加到购物车
               </button>
-              <p style="font-size: 15px">添加到购物车以购买二手车</p>
             </div>
+          </div>
+        </div>
+        <br />
+        <div class="row" style="padding: 10px">
+          <!-- 留言区域 -->
+          <div class="col-md-6">
+            <div class="row">
+              <div class="page-header">
+                <h2>历史留言</h2>
+              </div>
+              <div class="row">
+                <ul class="list-group" th:each="comment : ${comments}">
+                  <li class="list-group-item">
+                    <div class="page-header well well-sm">
+                      用户ID:<p style="font-size: 17px" th:text="${comment.getUid()}"><strong>id: </strong> Userid</p>
+                    </div>
+                    <p th:text="${comment.getMsg()}">
+                      这是一条用户留言这是一条用户留言这是一条用户留言这是一条用户留言这是一条用户留言这是一条用户留言这是一条用户留言
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="padding: 5%">
+            <form method="post" class="basic-grey" th:action="@{/comment/add(cid=${info.getCid()})}">
+              <h1>
+                商品留言
+                <span>发送一条友善的评论! </span>
+              </h1>
+              <!--<label>
+                <span>邮箱 :</span>
+                <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="Valid Email Address"
+                        value="这里写用户的邮箱"
+                />
+              </label>-->
+
+              <label>
+                <span>信息 :</span>
+                <textarea
+                        id="msg"
+                        name="msg"
+                        placeholder="留下属于你的足迹! "
+                        style="resize: vertical"
+                ></textarea>
+              </label>
+              <label>
+                <span>&nbsp;</span>
+                <button type="submit" class="button">发送</button>
+              </label>
+            </form>
           </div>
         </div>
       </div>

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
+<!-- @pageDoc: 该文件为注册页面, 主要用于用户注册功能.
+  页面逻辑:
+    - 注册成功 -> 跳转至登陆页面
+  -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>皮卡丘二手车 登录</title>
+    <title>皮卡丘二手车 注册</title>
     <!-- 链接引入 jquery 的 javascript 代码 -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <style>
@@ -24,7 +26,7 @@
             height: 100%;
             font-family: 'Open Sans', sans-serif;
             margin: 0;
-            background-color: #333d4a;
+            background-color: #4a374a;
         }
 
         #login {
@@ -57,15 +59,15 @@
             font-size: 15px;
             font-weight: bolder;
             color: #fff;
-            border-top: 1px solid #312E3D;
-            border-left: 1px solid #312E3D;
-            border-right: 1px solid #312E3D;
+            border-top: 1px solid #312e3d;
+            border-left: 1px solid #312e3d;
+            border-right: 1px solid #312e3d;
             border-bottom: 1px solid #807c9b;
             border-radius: 4px;
-            background-color: #2D2D3F;
+            background-color: #2d2d3f;
         }
 
-        .but-login {
+        .but {
             width: 300px;
             min-height: 20px;
             display: block;
@@ -79,38 +81,23 @@
             border-radius: 5px;
             margin: 0;
         }
-
-        .but-register {
-            width: 300px;
-            min-height: 20px;
-            display: block;
-            background-color: #6e6e6e;
-            border: 1px solid #6e6e6e;
-            color: #fff;
-            padding: 9px 14px;
-            font-size: 16px;
-            font-weight: bolder;
-            line-height: normal;
-            border-radius: 5px;
-            margin: 0;
-        }
     </style>
 </head>
 
 <body>
-    <div id="login">
-        <h1>Login</h1>
-        <form method="post" action="page-login.html" th:action="@{/login}" >
-            <input type="email" name="email" required="required" placeholder="邮箱" ></input>
-            <input type="password" name="password" required="required" placeholder="密码"></input>
-            <button class="but-login" type="submit">登录</button>
-        </form>
-        <br />
-        <form method="get" th:action="@{/register}">
-            <button class="but-register" id="register" >注册</button>
-        </form>
-    </div>
+<!-- 页面内容 -->
+<div id="login">
+    <h1>register</h1>
+    <form method="post" th:action="@{/register}">
+        <input type="email" required="required" placeholder="邮箱" name="email"></input>
+        <input type="password" required="required" placeholder="密码" name="password"></input>
+        <button class="but" type="submit">注册</button>
+    </form>
+</div>
 
+<script>
+    // 页面javascript
+</script>
 </body>
 
 </html>

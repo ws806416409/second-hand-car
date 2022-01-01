@@ -10,10 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -45,16 +49,46 @@ public class UserController {
         qu.eq("password", user.getPassword());
         qu.eq("email",user.getEmail());
         User us = iUserService.getOne(qu);
-        List<Car> cars = iCarService.list();
-        model.addAttribute("cars",cars);
         if(us != null){
-            session.setAttribute("user",user);
-            return "home";
+            session.setAttribute("user",us);
+            return "redirect:/index";
         }
         return "page-login";
     }
 
+    @GetMapping("/index")
+    public String main(HttpSession session, Model model) {
+        List<Car> cars = iCarService.list();
+        model.addAttribute("cars",cars);
+        Set<String> carTypes = new HashSet<>();
+        for(Car car : cars){
+            carTypes.add(car.getCtype());
+        }
+        session.setAttribute("types", carTypes);
+        return "home";
+    }
 
+
+    @GetMapping("/register")
+    public String register(){
+        System.out.println("-------------------------");
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String doRegister(User user){
+
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
+        //注册成功，则返回登录页面
+        if(user.getEmail()!="" && user.getPassword()!=""){
+            iUserService.save(user);
+            return "page-login";
+        }
+        //注册失败，则继续返回注册页面
+        else
+            return "register";
+    }
 
 
 }

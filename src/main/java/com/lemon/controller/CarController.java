@@ -3,15 +3,16 @@ package com.lemon.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lemon.entity.Car;
+import com.lemon.entity.Comment;
 import com.lemon.service.ICarService;
+import com.lemon.service.ICommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -29,11 +30,27 @@ public class CarController {
     @Autowired
     private ICarService iCarService;
 
+    @Autowired
+    private ICommentService iCommentService;
+
     @GetMapping("/info/{Cid}")
     public String getInfo(@PathVariable("Cid") Integer cid, Model model){
         Car carInfo = this.iCarService.getById(cid);
         model.addAttribute("info", carInfo);
+        QueryWrapper<Comment> qu = new QueryWrapper<>();
+        qu.eq("cid", cid);
+        List<Comment> comments = iCommentService.list(qu);
+        model.addAttribute("comments", comments);
         return "carInfo";
+    }
+
+    @GetMapping("/selectByType")
+    public String selectByType(Model model, @RequestParam String type){
+        QueryWrapper qu = new QueryWrapper();
+        qu.eq("ctype",type);
+        List cars = iCarService.list(qu);
+        model.addAttribute("cars",cars);
+        return "home";
     }
 
 }

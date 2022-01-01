@@ -76,10 +76,7 @@
           <div class="row" id="car-map-head">
             <div class="col-md-8">
               <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="#">类别1</a></li>
-                <li role="presentation"><a href="#">类别2</a></li>
-                <li role="presentation"><a href="#">类别3</a></li>
-                <li role="presentation"><a href="#">类别4</a></li>
+                <li  role="presentation" class="active" th:each="type : ${session.types}"><a href="#" th:href="@{/car/selectByType(type=${type})}" th:text="${type}">类别1</a></li>
                 <!-- ... 这里就用一个循环， 把所有的汽车类别和相关信息表示在一个div中就可以了
                 已经设置过， 一行有4个项目
                 -->
