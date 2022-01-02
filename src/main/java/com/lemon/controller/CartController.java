@@ -166,16 +166,13 @@ public class CartController {
      */
     @RequestMapping("/mycar")
     public String indexMyCar(Model model, HttpSession session){
-
         //获取用户id
         User user = (User)session.getAttribute("user");
         int uid = user.getUid();
-
         QueryWrapper qw = new QueryWrapper();
         qw.eq("uid",uid);
         List<Car> list = this.iCarService.list(qw);
         model.addAttribute("cars",list);
-
         //格式化日期
         int i = 1;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -185,7 +182,6 @@ public class CartController {
             i++;
         }
         model.addAttribute("buytime",buyTime);
-
         return "myCar";
     }
 

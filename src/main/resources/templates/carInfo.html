@@ -164,7 +164,7 @@
           </div>
           <div class="col-md-6">
             <!-- 已登录显示邮箱，未登录则显示跳转到登录页面或注册页面链接 -->
-            <h4 style="text-align: right"><a href="#">这里是用户邮箱</a></h4>
+            <h4 style="text-align: right" th:text="${session.user.getEmail()}">这里是用户邮箱</h4>
           </div>
         </div>
       </div>
