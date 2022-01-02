@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- @pageDoc: 该文件为页面模版, 想要创建一个新的页面, 可以先复制该文件内容, 然后修改此注释, 解释该页面功能 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>购物车</title>
+    <!-- 链接引入 jquery 的 javascript 代码 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 链接引入 bootstrap 的 css 样式 -->
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+            integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+            crossorigin="anonymous"
+    />
+    <!-- 链接引入 bootstrap 的 javascript 代码 -->
+    <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"
+    ></script>
+    <style>
+        /* 页面css */
+        #head {
+            background-color: rgb(255, 249, 240);
+        }
+
+        #head * {
+            background-color: rgb(255, 249, 240);
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bolder;
+        }
+
+        body {
+            background-color: rgb(255, 249, 240);
+        }
+
+        .listItem {
+            font-size: 17px;
+            background-color: rgb(232, 244, 250);
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        * {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 页面内容 -->
+<div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8">
+        <!-- 页头 -->
+        <div id="head" class="row">
+            <div class="row">
+                <div class="col-md-6">
+                    <ol class="breadcrumb">
+                        <!-- 这里是页面导航栏， 注意各个页面之间的跳转 -->
+                        <li><a href="#" th:href="@{/index}">皮卡丘二手车市场</a></li>
+                        <li class="active">购物车</li>
+                    </ol>
+                </div>
+                <div class="col-md-6">
+                    <!-- 已登录显示邮箱，未登录则显示跳转到登录页面或注册页面链接 -->
+                    <h4 style="text-align: right" th:text="${session.user.getEmail()}">这里是用户邮箱</h4>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div id="main">
+            <div class="row">
+                <ul class="nav nav-pills nav-justified">
+                    <li role="presentation"><a th:href="@{/cart/mycar/}">我的汽车</a></li>
+                    <li role="presentation" class="active"><a th:href="@{/cart/}">购物车</a></li>
+                    <li role="presentation"><a th:href="@{/cart/history}">历史订单</a></li>
+                </ul>
+            </div>
+            <br>
+            <div class="row">
+                <div class="row">
+                    <!-- 我的汽车列表 -->
+                    <div class="table-responsive listItem">
+                        <table class="table">
+                            <tr>
+                                <th>二手车缩略图</th>
+                                <th>汽车名称</th>
+                                <th>卖家</th>
+                                <th>价格</th>
+                                <th>-</th>
+                            </tr>
+
+                            <tr class="oneMyCarItem" th:each="carInfo , rowInfo: ${list}">
+                                <td>
+                                    <img src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png" alt="这里应该是一个汽车图片"
+                                         class="img-rounded" height="100px" width="100px" style="object-fit: cover" th:src="${carInfo.getImg()}">
+                                </td>
+                                <td th:text="${carInfo.getCname()}"><a href="#">一个汽车名称</a></td>
+                                <td th:text="${email[rowInfo.count]}">卖家邮箱</td>
+                                <td th:text="${carInfo.getPrice()}">123.00￥</td>
+                                <td>
+                                    <form method="post" th:action="@{/cart/buycar(cid=${carInfo.cid})}">
+                                        <button type="submit" class="btn btn-default">购买</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <!-- 以上这一段循环，用于展示我的二手车 -->
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="foot"></div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <script>
+        // 页面javascript
+    </script>
+</body>
+
+</html>

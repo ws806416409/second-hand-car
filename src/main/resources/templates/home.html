@@ -57,13 +57,14 @@
             <div class="col-md-6">
               <ol class="breadcrumb">
                 <!-- 这里是页面导航栏， 注意各个页面之间的跳转 -->
-                <li><a href="#">皮卡丘二手车市场</a></li>
+                <li><a href="#" th:href="@{/index}">皮卡丘二手车市场</a></li>
+                <li><a href="#" th:href="@{/cart/}">我的购物车</a></li>
                 <li class="active">主页</li>
               </ol>
             </div>
             <div class="col-md-6">
               <!-- 已登录显示邮箱，未登录则显示跳转到登录页面或注册页面链接 -->
-              <h4 style="text-align: right">用户邮箱</h4>
+              <h4 style="text-align: right" th:text="${session.user.getEmail()}">用户邮箱</h4>
             </div>
           </div>
         </div>
@@ -78,7 +79,6 @@
               <ul class="nav nav-pills">
                 <li  role="presentation" class="active" th:each="type : ${session.types}"><a href="#" th:href="@{/car/selectByType(type=${type})}" th:text="${type}">类别1</a></li>
                 <!-- ... 这里就用一个循环， 把所有的汽车类别和相关信息表示在一个div中就可以了
-                已经设置过， 一行有4个项目
                 -->
               </ul>
             </div>
@@ -91,7 +91,7 @@
             style="text-align: center; font-size: 16px; font-weight: bolder; border: 2px"
           >
 
-            <div th:each="car : ${cars}" class="col-md-3" onclick="gotoCarInfo(this)"}>
+            <div th:each="car : ${cars}" class="col-md-3">
               <img
                       src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png"
                       th:src="${car.getImg()}"

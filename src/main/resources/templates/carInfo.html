@@ -157,9 +157,9 @@
           <div class="col-md-6">
             <ol class="breadcrumb">
               <!-- 这里是页面导航栏， 注意各个页面之间的跳转 -->
-              <li><a href="#">皮卡丘二手车市场</a></li>
-              <li><a href="#">主页</a></li>
-              <li class="active">当前汽车名称</li>
+              <li><a href="#" th:href="@{/index}">皮卡丘二手车市场</a></li>
+              <li><a href="#" th:href="@{/index}">主页</a></li>
+              <li class="active" th:text="${info.getCname()}">当前汽车名称</li>
             </ol>
           </div>
           <div class="col-md-6">
@@ -193,16 +193,18 @@
               <h4>到手价：</h4>
               <h2 style="color: crimson" th:text="${info.getPrice()}">这里是汽车价格</h2>
             </div>
+            <form method="post" th:action="@{/car/add(cid=${info.getCid()})}">
             <div class="row" style="text-align: left">
               <button
-                      type="button"
+                      type="submit"
                       class="btn btn-success"
                       style="width: 60%; height: 50px"
-                      onclick="addToCart"
+
               >
                 添加到购物车
               </button>
             </div>
+            </form>
           </div>
         </div>
         <br />

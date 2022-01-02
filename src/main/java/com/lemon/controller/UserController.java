@@ -77,9 +77,6 @@ public class UserController {
 
     @PostMapping("/register")
     public String doRegister(User user){
-
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
         //注册成功，则返回登录页面
         if(user.getEmail()!="" && user.getPassword()!=""){
             iUserService.save(user);
@@ -89,6 +86,5 @@ public class UserController {
         else
             return "register";
     }
-
 
 }

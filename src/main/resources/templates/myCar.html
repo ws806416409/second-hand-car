@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!-- @pageDoc: 该文件为我的汽车页面， 主要实现用户添加 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户详情</title>
+    <!-- 链接引入 jquery 的 javascript 代码 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 链接引入 bootstrap 的 css 样式 -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+    <!-- 链接引入 bootstrap 的 javascript 代码 -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      /* 页面css */
+      #head {
+        background-color: rgb(255, 249, 240);
+      }
+
+      #head * {
+        background-color: rgb(255, 249, 240);
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bolder;
+      }
+
+      body {
+        background-color: rgb(255, 249, 240);
+      }
+
+      .listItem {
+        font-size: 17px;
+        background-color: rgb(232, 244, 250);
+        border-radius: 8px;
+        padding: 5px;
+      }
+
+      * {
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 发布我的二手车的模态框 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">添加我的二手车</h4>
+          </div>
+          <form method="post" th:action="@{/cart/addcar}">
+            <div class="modal-body">
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">类型</span>
+                <input
+                        type="text"
+                        class="form-control"
+                        aria-describedby="sizing-addon2"
+                        placeholder="奔驰"
+                        name="ctype"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">名称</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-describedby="sizing-addon2"
+                  placeholder="一辆车的名字从他出身起就定好了。"
+                  name="cname"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">描述</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-describedby="sizing-addon2"
+                  placeholder="一段详略得当的描述是加分项哦~"
+                  name="detail"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">售价</span>
+                <input
+                  type="number"
+                  class="form-control"
+                  aria-describedby="sizing-addon2"
+                  placeholder="合理的估价也是交易的基础呢! "
+                  name="price"
+                />
+              </div>
+              <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">里程</span>
+                <input
+                        type="text"
+                        class="form-control"
+                        aria-describedby="sizing-addon2"
+                        placeholder="跑了多少公里呀!"
+                        name="milage"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+              <button type="submit" class="btn btn-primary">提交</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="row">
+      <div class="col-md-2"></div>
+
+      <div class="col-md-8">
+        <!-- 页头 -->
+        <div id="head" class="row">
+          <div class="row">
+            <div class="col-md-6">
+              <ol class="breadcrumb">
+                <!-- 这里是页面导航栏， 注意各个页面之间的跳转 -->
+                <li><a href="#" th:href="@{/index}">皮卡丘二手车市场</a></li>
+                <li class="active">我的二手车</li>
+              </ol>
+            </div>
+            <div class="col-md-6">
+              <!-- 已登录显示邮箱，未登录则显示跳转到登录页面或注册页面链接 -->
+              <h4 style="text-align: right" th:text="${session.user.getEmail()}">这里是用户邮箱</h4>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div id="main">
+          <div class="row" style="font-weight: bold">
+            <ul class="nav nav-pills nav-justified">
+              <li role="presentation"  class="active"><a th:href="@{/cart/mycar/}">我的汽车</a></li>
+              <li role="presentation"><a th:href="@{/cart/}">购物车</a></li>
+              <li role="presentation" ><a th:href="@{/cart/history}">历史订单</a></li>
+            </ul>
+          </div>
+          <br />
+
+          <div class="row" style="text-align: right; padding: 10px">
+            <button
+              type="button"
+              class="btn btn-info btn-lg"
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              添加我的二手车
+            </button>
+          </div>
+
+          <div class="row">
+            <!-- 我的汽车列表 -->
+            <div class="table-responsive listItem">
+              <table class="table">
+                <tr>
+                  <th>二手车缩略图</th>
+                  <th>汽车名称</th>
+                  <th>价格</th>
+                  <th>发布时间</th>
+                </tr>
+
+                <tr class="oneMyCarItem" th:each="car , rowInfo : ${cars}">
+                  <td>
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/Zranshi/CDN@1.45/2021.5.20/80438411_p0.png"
+                      alt="这里应该是一个汽车图片"
+                      class="img-rounded"
+                      height="100px"
+                      width="100px"
+                      style="object-fit: cover"
+                      th:src="${car.getImg()}"
+                    />
+                  </td>
+                  <td th:text="${car.getCname()}"><a href="#">一个汽车名称</a></td>
+                  <td th:text="${car.getPrice()}">123.00￥</td>
+                  <td th:text="${buytime[rowInfo.count]}">2021.12.31-14:56</td>
+                </tr>
+                <!-- 以上这一段循环，用于展示我的二手车 -->
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="foot"></div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+    <script>
+      // 页面javascript
+    </script>
+  </body>
+</html>
